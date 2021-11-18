@@ -6,8 +6,8 @@ const tasks = require("./routes/tasks");
 app.use(express.json());
 
 // Routes
-app.get("/hello", (req, res) => {
-  res.send("Task Manager App");
+app.get("/", (req, res) => {
+  res.send("Hello W0rld");
 });
 
 app.use("/api/v1/tasks", tasks);
