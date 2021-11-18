@@ -15,6 +15,9 @@ app.use("/api/v1/tasks", tasks);
 // Route Design
 // api/v1/tasks - GET - retrieves tasks
 // api/v1/tasks - POST - create new task
+// api/v1/tasks/:id - GET - retrieve a task info
+// api/v1/tasks/:id - PATCH - update a task
+// api/v1/tasks/:id - DELETE - delete a task
 
 const port = 4000;
 
