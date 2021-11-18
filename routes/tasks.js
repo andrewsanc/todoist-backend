@@ -10,7 +10,7 @@ const {
   deleteTask,
 } = require("../controllers/tasks");
 
-// Router set up for task endpoiints
+// Router set up for task endpoints
 router.route("/").get(getAllTasks).post(createTask);
 router.route("/:id").get(getTask).patch(updateTask).delete(deleteTask);
 
