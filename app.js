@@ -1,7 +1,9 @@
-require("./db/connect");
 const express = require("express");
 const app = express();
 const tasks = require("./routes/tasks");
+require("dotenv").config();
+const connectDB = require("./db/connect");
+const connectionString = process.env.DB_CONNECTION_STRING;
 
 // Middleware
 
@@ -23,4 +25,14 @@ app.use("/api/v1/tasks", tasks);
 
 const port = 4000;
 
-app.listen(port, console.log(`Server is listening on port ${port}`));
+// Start up function
+const start = async () => {
+  try {
+    await connectDB(connectionString);
+    app.listen(port, console.log(`Server is listening on port ${port}`));
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+start();
