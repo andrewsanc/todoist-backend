@@ -1,3 +1,6 @@
+// Task Model Interface
+const Task = require("../models/tasks");
+
 const getAllTasks = (req, res) => {
   res.send("get all tasks");
 };
