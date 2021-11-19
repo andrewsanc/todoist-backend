@@ -1,15 +1,15 @@
+require("./db/connect");
 const express = require("express");
 const app = express();
 const tasks = require("./routes/tasks");
-require("dotenv").config();
 
 // Middleware
+
 app.use(express.json());
 
 // Routes
 app.get("/", (req, res) => {
   res.send("Hello W0rld");
-  console.log(process.env.DB_CONNECTION_STRING);
 });
 
 app.use("/api/v1/tasks", tasks);
