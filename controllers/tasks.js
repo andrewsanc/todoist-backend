@@ -42,7 +42,7 @@ const updateTask = async (req, res) => {
       new: true, // Retrieves newly modified task
       runValidators: true, // Runs our model validators
     });
-    res.status(200).json({ task });
+    res.status(200).json({ task, success: true });
   } catch (error) {
     res.status(500).json({ msg: error });
   }
