@@ -5,17 +5,15 @@ const tasks = require("./routes/tasks");
 
 require("dotenv").config();
 const connectDB = require("./db/connect");
+const notFound = require("./middleware/not-found");
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 
 // Routes
-app.get("/", (req, res) => {
-  res.send("Hello W0rld");
-});
-
 app.use("/api/v1/tasks", tasks);
+app.use(notFound);
 
 // Route Design
 // api/v1/tasks - GET - retrieves tasks
