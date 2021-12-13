@@ -6,6 +6,7 @@ const tasks = require("./routes/tasks");
 require("dotenv").config();
 const connectDB = require("./db/connect");
 const notFound = require("./middleware/not-found");
+const errorHandlerMiddleware = require("./middleware/error-handler");
 
 // Middleware
 app.use(cors());
@@ -14,6 +15,7 @@ app.use(express.json());
 // Routes
 app.use("/api/v1/tasks", tasks);
 app.use(notFound);
+app.use(errorHandlerMiddleware);
 
 // Route Design
 // api/v1/tasks - GET - retrieves tasks
