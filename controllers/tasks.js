@@ -1,6 +1,7 @@
 // Task Model Interface/Schema
 const Task = require("../models/Task");
 const asyncWrapper = require("../middleware/async");
+const { createCustomError } = require("../errors/error-handler");
 
 const getAllTasks = asyncWrapper(async (req, res) => {
   const tasks = await Task.find({});
@@ -18,9 +19,7 @@ const getTask = asyncWrapper(async (req, res, next) => {
 
   if (!task) {
     // if no id is found within our tasks collection
-    const error = new Error("Not found");
-    error.status = 404;
-    return next(error);
+    return next(createCustomError(`No Task found with id: ${taskID}`, 404));
   }
 
   res.status(200).json({ task });
@@ -51,7 +50,7 @@ const deleteTask = asyncWrapper(async (req, res) => {
 
   if (!task) {
     // if no id is found within our tasks collection
-    return res.status(404).json({ msg: `No task with id: ${taskID}` });
+    return next(createCustomError(`No Task found with id: ${taskID}`, 404));
   }
 
   res.status(200).json({ task: null, success: true });
